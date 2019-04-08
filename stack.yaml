@@ -1,0 +1,12 @@
+flags: {}
+packages:
+- .
+extra-deps:
+- brick-0.47
+- config-ini-0.2.4.0
+- data-clist-0.1.2.2
+- text-zipper-0.10.1
+- word-wrap-0.4.1
+- github: yes91/lambda-chat-protocol
+  commit: 37234670360ae36a54bea87e6f74f7814239e77d
+resolver: lts-13.12
