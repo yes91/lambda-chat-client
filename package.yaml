@@ -1,10 +1,10 @@
 name:                lambda-chat-client
 version:             0.1.0.0
-github:              "githubuser/lambda-chat-client"
+github:              "yes91/lambda-chat-client"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+author:              "Kieran Blazier"
+maintainer:          "kieranblazier@gmail.com"
+copyright:           "2019 Kieran Blazier"
 
 extra-source-files:
 - README.md
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/lambda-chat-client#readme>
+description:         Please see the README on GitHub at <https://github.com/yes91/lambda-chat-client#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -36,8 +36,6 @@ dependencies:
 - pipes-network
 - pipes-parse
 - lambda-chat-protocol
-#- gi-gtk
-#- haskell-gi-base
 
 library:
   source-dirs: src
@@ -48,7 +46,7 @@ library:
     - RankNTypes
 
 executables:
-  lambda-chat-client-exe:
+  lambda-chat:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -59,7 +57,7 @@ executables:
     - lambda-chat-client
 
 tests:
-  lambda-chat-client-test:
+  lambda-chat-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:

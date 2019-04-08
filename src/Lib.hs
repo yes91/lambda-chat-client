@@ -19,7 +19,7 @@ import Chat
 
 appEntry :: IO ()
 appEntry = do
-  opts <- execParser fullOpts
+  opts <- getOpts
   eventChan <- newBChan 10
   upChan <- newChan
   addr <- resolve (host opts) (port opts)
