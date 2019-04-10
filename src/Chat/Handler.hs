@@ -70,11 +70,14 @@ submitChoice s = do
       mi = L.listSelected ls
   case mi of
     Just i -> do
-      sender $ ChooseRecip (es Vec.! i)
+      sender . ChooseRecip $ fst (es Vec.! i)
       return $ s & mode .~ Chat
     Nothing -> return s
 
 handleList :: State -> BrickEvent Name Message -> EventM Name (Next State)
+handleList s (AppEvent (Right (ChatRequest i))) = do
+  liftIO (s^.sink $ ChooseRecip i)
+  continue $ s & mode .~ Chat
 handleList s (AppEvent (Right (ActiveClients cs'))) = do
   let ls = s^.list
       cs = Vec.toList $ L.listElements ls
@@ -99,7 +102,7 @@ submitText s = do
              & messages %~ (x :)
 
 handleChat :: State -> BrickEvent Name Message -> EventM Name (Next State)
-handleChat s (AppEvent (Right (MessageFrom user msg))) = continue $ s & messages %~ (x :)
+handleChat s (AppEvent (Right (MessageFrom (_, user) msg))) = continue $ s & messages %~ (x :)
   where x = user ++ "> " ++ msg
 handleChat s (AppEvent (Right (Notice msg))) = continue $ s & messages %~ (x :)
   where x = "[Notice] " ++ msg
@@ -108,3 +111,4 @@ handleChat s (VtyEvent ev) = case ev of
   V.EvKey V.KUp [V.MCtrl] -> vScrollBy scroll (-1) >> continue s
   V.EvKey V.KEnter [] -> liftIO (submitText s) >>= continue
   _ -> handleEventLensed s input ED.handleEditorEvent ev >>= continue
+handleChat s _ = continue s

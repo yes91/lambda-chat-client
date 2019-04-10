@@ -37,7 +37,7 @@ nameUI s = C.center . B.border $
          ]
 
 listUI :: State -> Widget Name
-listUI s = C.center . B.border $ L.renderList (\_ e -> str e) True (s^.list)
+listUI s = C.center . B.border $ L.renderList (\_ (_, e) -> str e) True (s^.list)
 
 chatUI :: State -> Widget Name
 chatUI s = C.center $ B.borderWithLabel (str "Chat") $

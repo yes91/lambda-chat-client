@@ -45,7 +45,7 @@ data ClientInfo = ClientInfo { _name :: Text } deriving(Show)
 data State = State
   { _mode :: Mode
   , _form :: Form ClientInfo Message Name
-  , _list :: L.List Name String
+  , _list :: L.List Name (Int, String)
   , _messages :: [String]
   , _input :: ED.Editor Text Name
   , _sink :: ClientMsg -> IO ()
